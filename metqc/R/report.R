@@ -122,8 +122,8 @@ generate_met_report <- function(qc_result,
   }
 
   # 整体质量判断
-  # is_pass <- (!is.na(snr_val) && snr_val >= 10) && (!is.na(rc_val) && rc_val >= 0.80)
-  is_pass <- (!is.na(snr_val) && snr_val >= 10)
+  is_pass <- (!is.na(snr_val) && snr_val >= 10) && (!is.na(rc_val) && rc_val >= 0.80)
+  # is_pass <- (!is.na(snr_val) && snr_val >= 10)
   quality_str <- ifelse(is_pass, "全部通过", "No")
 
   # 构建新数据框
