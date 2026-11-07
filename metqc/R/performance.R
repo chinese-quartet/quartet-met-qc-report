@@ -352,7 +352,7 @@ count_rc <- function(dt_file, metadata_file, output_dir = NULL) {
   dt.log2.stat.D6.inRD.sig <- dt.log2.stat.D6.inRD[p.adj2 < 0.05, ]
   dt.log2.stat.D6.inRD.sig.id <- unique(dt.log2.stat.D6.inRD.sig$HMDBID)
   # ref DAMs except M8
-  dt.lot.stat.D6.ref.sig <- MetReference %>% filter(dataset %in% sample)
+  dt.lot.stat.D6.ref.sig <- MetReference %>% dplyr::filter(dataset %in% sample)
   
   # get relative abundance to D6
   togetRe.log2 <- dt.long.info.log2[HMDBID %in% metsinRef, ]
@@ -371,7 +371,7 @@ count_rc <- function(dt_file, metadata_file, output_dir = NULL) {
   
   # subset DAMs in RDs
   log2_togetRe.withRef <- merge(log2_togetRe.ave.long, RefDataset, by = c("dataset", "HMDBID")) %>%
-    filter(HMDBID %in% dt.log2.stat.D6.inRD.sig.id)
+    dplyr::filter(HMDBID %in% dt.log2.stat.D6.inRD.sig.id)
   # Pearson correlation to RDs
   RC_log2 <- cor(log2_togetRe.withRef$Mean, log2_togetRe.withRef$log2FC,
                  use = "pairwise.complete.obs", method = "pearson"
@@ -413,7 +413,7 @@ count_rc <- function(dt_file, metadata_file, output_dir = NULL) {
   dt.log2.stat.D6.inRD.sig <- dt.log2.stat.D6.inRD[p.adj2 < 0.05, ]
   dt.log2.stat.D6.inRD.sig.id <- unique(dt.log2.stat.D6.inRD.sig$HMDBID)
   # ref DAMs except M8
-  dt.lot.stat.D6.ref.sig <- MetReference %>% filter(dataset %in% sample)
+  dt.lot.stat.D6.ref.sig <- MetReference %>% dplyr::filter(dataset %in% sample)
   
   # get relative abundance to D6
   togetRe.log2 <- dt.long.info.log2[HMDBID %in% metsinRef, ]
@@ -432,7 +432,7 @@ count_rc <- function(dt_file, metadata_file, output_dir = NULL) {
   
   # subset DAMs in RDs
   nolog_togetRe.withRef <- merge(nolog_togetRe.ave.long, RefDataset, by = c("dataset", "HMDBID")) %>%
-    filter(HMDBID %in% dt.log2.stat.D6.inRD.sig.id)
+    dplyr::filter(HMDBID %in% dt.log2.stat.D6.inRD.sig.id)
   # Pearson correlation to RDs
   RC_nolog <- cor(nolog_togetRe.withRef$Mean, nolog_togetRe.withRef$log2FC,
                   use = "pairwise.complete.obs", method = "pearson"
